@@ -1,20 +1,21 @@
 const express = require('express');
-const UserService = require('./../service/users.service');
+const faker = require('faker');
+const routes = express.Router();
 
-const userService = new UserService();
-
-const router = express.Router();
-
-router.get('/', async (req, res, next) => {
-  try {
-    const users = await userService.find();
-    res.json(users);
-  } catch (error) {
-    next(error);
+routes.get('/', (req, res) => {
+  const usuarios = [];
+  const { size } = req.query;
+  const limit = size || 10;
+  for (let index = 0; index < limit; index++) {
+    usuarios.push({
+      name: faker.commerce.productName(),
+      image: faker.image.imageUrl(),
+    });
   }
+  res.json(usuarios);
 });
 
-module.exports = router;
+module.exports = routes;
 
 /*
 const validatorHandler = require('./../middlewares/validator.handler');
