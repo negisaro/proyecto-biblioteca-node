@@ -1,15 +1,11 @@
 const express = require('express');
+const routerApi = require('./routes/index');
 
 const app = express();
-const port = process.env.port || 4200;
+const port = process.env.port || 3200;
 
-app.get('/', (req, res) => {
-  res.send('Hola mi server en express');
-});
-
-app.get('/nueva-ruta', (req, res) => {
-  res.send('Hola, soy una nueva ruta');
-});
+app.use(express.json());
+app.get(routerApi);
 
 app.listen(port, () => {
   console.log('Mi port' + port);
