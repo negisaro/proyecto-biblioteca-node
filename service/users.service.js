@@ -1,5 +1,7 @@
 const faker = require('faker');
-const { models } = require('./../libs/sequelize');
+const sequelize = require('./../libs/sequelize');
+const getConnection = require('../libs/postgres');
+//const { models } = require('./../libs/sequelize');
 
 class Users {
   constructor() {
@@ -27,9 +29,16 @@ class Users {
     return newUser;
   }
 
+  /* async find() {
+    const client = await getConnection();
+    const rta = await client.query('SELECT * FROM tasks');
+    return rta.rows;
+  } */
+
   async find() {
-    const rta = await models.User.findAll();
-    return rta;
+    const query = 'SELECT * FROM tasks';
+    const [data] = await sequelize.query(query);
+    return data;
   }
 
   /*findOne(id) {
