@@ -26,6 +26,7 @@
     "nodemon": "^2.0.16"
   },
   "dependencies": {
+    "@hapi/boom": "^10.0.0",
     "codigo": "^1.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",

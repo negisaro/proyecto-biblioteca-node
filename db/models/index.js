@@ -1,9 +1,9 @@
 const { User, UserSchema } = require('./model.user');
-//const { libro, UserSchema } = require('./model.libro');
+const { Autor, AutorSchema } = require('./model.autor');
 
 function setupModels(sequelize) {
   User.init(UserSchema, User.config(sequelize));
-  //libro.init(UserSchema, libro.config(sequelize));
+  Autor.init(AutorSchema, Autor.config(sequelize));
 }
 
 module.exports = setupModels;

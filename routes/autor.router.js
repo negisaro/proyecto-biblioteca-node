@@ -1,31 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const UserService = require('./../service/users.service');
-const validatorHandler = require('./../middlewares/validator.handler');
+const autorService = require('./../service/autor.service');
 const {
-  updateUserSchema,
-  createUserSchema,
-  getUserSchema,
-} = require('./../schemas/user.schema');
+  updateAutorSchema,
+  createAutorSchema,
+  getAutorSchema,
+} = require('./../schemas/autor.schema');
 
-const service = new UserService();
+const service = new autorService();
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await service.find();
-    res.json(users);
+    const autor = await service.find();
+    res.json(autor);
   } catch (error) {
     next(error);
   }
 });
 
-router.get('/:id',
-validatorHandler(getUserSchema, 'params'),
+/* router.get(
+  '/:id',
+  validatorHandler(getAutorSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const usuario = await service.findOne(id);
-      res.json(usuario);
+      const category = await service.findOne(id);
+      res.json(category);
     } catch (error) {
       next(error);
     }
@@ -34,7 +34,7 @@ validatorHandler(getUserSchema, 'params'),
 
 router.post(
   '/',
-  validatorHandler(createUserSchema, 'body'),
+  validatorHandler(createAutorSchema, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;
@@ -48,8 +48,8 @@ router.post(
 
 router.patch(
   '/:id',
-  validatorHandler(getUserSchema, 'params'),
-  validatorHandler(updateUserSchema, 'body'),
+  validatorHandler(getAutorSchema, 'params'),
+  validatorHandler(updateAutorSchema, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -64,7 +64,7 @@ router.patch(
 
 router.delete(
   '/:id',
-  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(getAutorSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -74,6 +74,6 @@ router.delete(
       next(error);
     }
   }
-);
+); */
 
 module.exports = router;
